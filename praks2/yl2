@@ -1,0 +1,18 @@
+#!/bin/bash
+# Eesmärk: väljastada kuupäeva- ja ajainfo ning kalendri vaade (Debian 12 -> ncal).
+
+echo "——— Aeg/kuupäev ———"
+echo "Kuupäev       : $(date '+%d.%m.%Y')"
+echo "Kellaaeg      : $(date '+%H:%M:%S')"
+echo "Nädalapäev    : $(date '+%A')"
+echo "Nädalanumber  : $(date '+%V')"
+echo "Aasta päev nr : $(date '+%j')"
+echo "Täisvorming   : $(date -R)"
+
+echo
+echo "——— Kalender (käesolev kuu) ———"
+if command -v ncal >/dev/null 2>&1; then
+  ncal -b
+else
+  echo "ncal puudub. Paigalda: sudo apt install ncal"
+fi
