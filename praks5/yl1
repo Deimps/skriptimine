@@ -1,0 +1,24 @@
+#!/bin/bash
+# Eesmärk: küsi vanus ja väljasta kategooria (laps/nooruk/täiskasvanu/senjoor).
+
+printf "Sisesta (oma) vanus: "
+read -r vanus
+
+# Luba ainult mitte-negatiivne täisarv (0,1,2,...)
+if ! [[ "$vanus" =~ ^[0-9]+$ ]]; then
+  echo "vigane sisend"
+  exit 1
+fi
+
+# Kasuta [ ] ja -a/-ge/-lt nagu teoorias
+if [ "$vanus" -ge 0 -a "$vanus" -lt 11 ]; then
+  echo "Oled laps"
+elif [ "$vanus" -ge 11 -a "$vanus" -lt 18 ]; then
+  echo "Oled nooruk"
+elif [ "$vanus" -ge 18 -a "$vanus" -lt 63 ]; then
+  echo "Oled täiskasvanu"
+elif [ "$vanus" -ge 63 ]; then
+  echo "Oled senjoor"
+else
+  echo "vigane sisend"
+fi
