@@ -1,0 +1,22 @@
+#!/bin/bash
+# Eesmärk: küsib kellaaja (tunnid 0..23) ja tervitab vastavalt vahemikule.
+
+printf "Sisesta aja väärtus (tunnid 0-23): "
+read -r h
+
+# Täisarv 0..23
+if ! [[ "$h" =~ ^[0-9]+$ ]] || [ "$h" -lt 0 ] || [ "$h" -gt 23 ]; then
+  echo "vigane sisend"
+  exit 1
+fi
+
+# Kasutame [[ ... ]] koos loogikaga || (OR)
+if   [[ "$h" -ge 6  && "$h" -lt 12 ]]; then
+  echo "Tere hommikust"
+elif [[ "$h" -ge 12 && "$h" -lt 18 ]]; then
+  echo "Tere päevast"
+elif [[ "$h" -ge 18 && "$h" -lt 22 ]]; then
+  echo "Tere õhtust"
+else
+  echo "Head ööd!"
+fi
