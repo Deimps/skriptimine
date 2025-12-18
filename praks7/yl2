@@ -1,0 +1,18 @@
+#!/bin/bash
+# Ül2: küsi ridade arv ja tärnide arv reas; prindi kujund reanumbritega.
+
+read -rp "Sisesta ridade arv: " r
+read -rp "Sisesta tärnide arv reas: " c
+
+# lihtne kontroll
+if ! [[ "$r" =~ ^[1-9][0-9]*$ && "$c" =~ ^[1-9][0-9]*$ ]]; then
+  echo "vigane sisend"; exit 1
+fi
+
+for ((i=1; i<=r; i++)); do
+  printf "%d. " "$i"
+  for ((j=1; j<=c; j++)); do
+    printf "* "
+  done
+  printf "\n"
+done
