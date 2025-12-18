@@ -1,0 +1,22 @@
+#!/bin/bash
+# Ül3: õõnes ristkülik. 1. ja viimane rida: tärnid; sisemised: tärn, tühikud, tärn.
+
+read -rp "Sisesta ridade arv: " r
+read -rp "Sisesta tärnide arv reas: " c
+if ! [[ "$r" =~ ^[2-9][0-9]*$ && "$c" =~ ^[2-9][0-9]*$ ]]; then
+  echo "Vihje: mõlemad peavad olema >=2, et oleks õõnsus."; exit 1
+fi
+
+for ((i=1; i<=r; i++)); do
+  printf "%d. " "$i"
+  if (( i==1 || i==r )); then
+    for ((j=1; j<=c; j++)); do printf "* "; done
+  else
+    printf "* "                     # vasak äär
+    for ((j=2; j<=c-1; j++)); do    # sisemine “tühikuala”
+      printf "  "
+    done
+    printf "* "                     # parem äär
+  fi
+  printf "\n"
+done
