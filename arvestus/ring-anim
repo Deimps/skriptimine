@@ -100,7 +100,7 @@ while :; do
       }
     }'
 
-  # Nihuta faase edasi ja mähkima 0..2π vahemikku
+  # Nihuta faase edasi ja mähi 0..2π vahemikku
   phase=$(awk -v p="$phase" -v s="$ROT_SPEED" 'BEGIN{pi=atan2(0,-1); p+=s; if(p>=2*pi)p-=2*pi; printf("%.6f",p)}')
   pulse=$(awk -v p="$pulse" -v s="$PULSE_SPEED" 'BEGIN{pi=atan2(0,-1); p+=s; if(p>=2*pi)p-=2*pi; printf("%.6f",p)}')
 
