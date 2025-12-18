@@ -1,0 +1,16 @@
+#!/bin/bash
+# Eesmärk: tervita automaatselt süsteemi kellaaja järgi + lisa kasutajanimi.
+
+USER_NAME="$(id -un)"
+h="$(date +%H)"
+h=$((10#$h))   # <-- teisendab "08" kümnendsüsteemi arvuks 8 (väldib oktalsüsteemi tõlgendust)
+
+if   (( h >= 6  && h < 12 )); then
+  echo "Tere hommikust, ${USER_NAME}!"
+elif (( h >= 12 && h < 18 )); then
+  echo "Tere päevast, ${USER_NAME}!"
+elif (( h >= 18 && h < 22 )); then
+  echo "Tere õhtust, ${USER_NAME}!"
+else
+  echo "Head ööd, ${USER_NAME}!"
+fi
