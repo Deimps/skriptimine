@@ -1,18 +1,29 @@
 #!/bin/bash
 # Nimi   : Deimo Sarapson
-# Fail   : kujund
-# Ülesanne: Küsi ridade arv ja trüki taanduv tärnikujund.
+# Klass  : IS25
+# kujund   : ring
+# Joonista ASCII-ring/rõngas.
+# R = raadius ridades; T = paksus (0 = täidetud ring)
+# Arvestame kirjatüübi kuvasuhet: y skaleeritakse *2
 
-read -rp "Sisesta ridade arv: " N
-# lihtne sisendikontroll: positiivne täisarv
-if ! [[ "$N" =~ ^[1-9][0-9]*$ ]]; then
-  echo "vigane sisend"; exit 1
-fi
+read -rp "Raadius (nt 10): " R
+read -rp "Paksus (0 = täidetud, nt 2): " T
+R=${R:-10}
+T=${T:-1}
+(( T < 0 )) && T=0
+(( T > R )) && T=$R
 
-for (( i=0; i<N; i++ )); do
-  # taandus (kasutame TAB-e, et näeks välja nagu näites)
-  for (( t=0; t<i; t++ )); do printf "\t"; done
-  # tärnide arv reas = N - i
-  for (( j=i; j<N; j++ )); do printf "* "; done
-  printf "\n"
+for ((y=R; y>=-R; y--)); do
+  line=""
+  for ((x=-2*R; x<=2*R; x++)); do
+    dsq=$(( x*x + (2*y)*(2*y) ))            # kaugus^2, y skaleeritud
+    if (( T == 0 )); then                    # täidetud ring
+      if (( dsq <= R*R )); then line+="*"; else line+=" "; fi
+    else                                     # rõngas paksusega T
+      inner=$(( (R - T)*(R - T) ))
+      outer=$(( (R + T)*(R + T) ))
+      if (( dsq >= inner && dsq <= outer )); then line+="*"; else line+=" "; fi
+    fi
+  done
+  echo "$line"
 done
