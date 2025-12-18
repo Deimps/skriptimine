@@ -1,0 +1,34 @@
+#!/bin/bash
+# Nimi   : Deimo Sarapson
+# Fail   : menu
+# Ülesanne: Trüki menüü ja kuva valiku kirjeldus.
+
+cat <<'MENU'
+1) liha ja kartulid
+2) kala ja friikartulid
+3) supp ja salat
+MENU
+
+read -rp "Tee oma valik (1 või 2 või 3): " valik
+
+case "$valik" in
+  1)
+    echo
+    echo "Väga maitsev, aga jälgi oma tervist!"
+    echo "Head isu!"
+    ;;
+  2)
+    echo
+    echo "Brititoit on maisev!"
+    echo "Head isu!"
+    ;;
+  3)
+    echo
+    echo "Nii tervislik ja igav..."
+    echo "Head isu!"
+    ;;
+  *)
+    echo "Tundmatu valik!"
+    exit 1
+    ;;
+esac
