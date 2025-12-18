@@ -1,0 +1,10 @@
+#!/bin/bash
+# Ül1: väljastab 5 rida, igal real 5 tärni; ees reanumber.
+
+for ((i=1; i<=5; i++)); do
+  printf "%d. " "$i"
+  for ((j=1; j<=5; j++)); do
+    printf "* "
+  done
+  printf "\n"
+done
