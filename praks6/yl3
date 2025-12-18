@@ -1,0 +1,23 @@
+#!/bin/bash
+# Ül3: küsi kuu number (1..12) ja väljasta kuu nimetus.
+
+printf "Sisesta kuu number (1-12): "
+read -r k
+if ! [[ "$k" =~ ^[0-9]+$ ]] || (( k < 1 || k > 12 )); then
+  echo "vigane sisend"; exit 1
+fi
+
+case "$k" in
+  1)  echo "See on jaanuar" ;;
+  2)  echo "See on veebruar" ;;
+  3)  echo "See on märts" ;;
+  4)  echo "See on aprill" ;;
+  5)  echo "See on mai" ;;
+  6)  echo "See on juuni" ;;
+  7)  echo "See on juuli" ;;
+  8)  echo "See on august" ;;
+  9)  echo "See on september" ;;
+  10) echo "See on oktoober" ;;
+  11) echo "See on november" ;;
+  12) echo "See on detsember" ;;
+esac
