@@ -1,0 +1,13 @@
+#!/bin/bash
+# Ül4: paremale laienev kolmnurk; real i kuvatakse i tärni.
+
+read -rp "Sisesta ridade arv: " r
+if ! [[ "$r" =~ ^[1-9][0-9]*$ ]]; then echo "vigane sisend"; exit 1; fi
+
+for ((i=1; i<=r; i++)); do
+  printf "%d. " "$i"
+  for ((j=1; j<=i; j++)); do
+    printf "* "
+  done
+  printf "\n"
+done
