@@ -1,0 +1,10 @@
+#!/bin/bash
+# Nimi   : Deimo Sarapson
+# Fail   : info
+# Ülesanne: Tervita sisselogitud kasutajat ja kuva kuupäev/kellaaeg.
+
+USER_NAME="$(id -un)"
+DATE_STR="$(date '+%d.%m.%Y kell %-H:%M')"   # %-H = tund ilma juhtiva nullita
+
+echo "Tere tulemast, ${USER_NAME}!"
+echo "Täna on ${DATE_STR}"
