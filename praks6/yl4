@@ -1,0 +1,20 @@
+#!/bin/bash
+# Ül4 v1: tuvastab, kas sisestatud arv on algarv (prime).
+
+printf "Sisesta suvaline arv: "
+read -r n
+if ! [[ "$n" =~ ^[0-9]+$ ]]; then
+  echo "vigane sisend"; exit 1
+fi
+if (( n < 2 )); then
+  echo "$n - ei ole algarv"; exit 0
+fi
+
+j=2
+while (( j * j <= n )); do
+  if (( n % j == 0 )); then
+    echo "$n - ei ole algarv"; exit 0
+  fi
+  (( j++ ))
+done
+echo "$n - on algarv"
