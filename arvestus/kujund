@@ -1,0 +1,18 @@
+#!/bin/bash
+# Nimi   : Deimo Sarapson
+# Fail   : kujund
+# Ülesanne: Küsi ridade arv ja trüki taanduv tärnikujund.
+
+read -rp "Sisesta ridade arv: " N
+# lihtne sisendikontroll: positiivne täisarv
+if ! [[ "$N" =~ ^[1-9][0-9]*$ ]]; then
+  echo "vigane sisend"; exit 1
+fi
+
+for (( i=0; i<N; i++ )); do
+  # taandus (kasutame TAB-e, et näeks välja nagu näites)
+  for (( t=0; t<i; t++ )); do printf "\t"; done
+  # tärnide arv reas = N - i
+  for (( j=i; j<N; j++ )); do printf "* "; done
+  printf "\n"
+done
