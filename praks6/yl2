@@ -1,0 +1,26 @@
+#!/bin/bash
+# Ül2: küsi täisarv ja väljasta selle numbrite summa (säilitame miinusmärgi).
+
+printf "Sisesta suvaline täisarv: "
+read -r n
+
+# lubame -123, 0, 456
+if ! [[ "$n" =~ ^-?[0-9]+$ ]]; then
+  echo "vigane sisend"; exit 1
+fi
+
+sign=1
+if [[ "$n" == -* ]]; then
+  sign=-1
+fi
+
+m="${n#-}"             # absoluutväärtus stringina
+sum=0
+while [[ "$m" != "0" ]]; do
+  d=$(( ${m: -1} ))    # viimane number
+  (( sum += d ))
+  m=$((10#$m / 10))    # eemalda viimane number (10# – väldi 08 octal)
+done
+
+(( sum *= sign ))
+echo "Arvu $n numbrite summa on $sum"
