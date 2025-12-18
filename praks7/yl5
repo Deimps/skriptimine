@@ -1,0 +1,14 @@
+#!/bin/bash
+# Ül5: paremale nihutatud kolmnurk – vasakul 'o', paremal tärnid.
+
+read -rp "Sisesta ridade arv: " r
+if ! [[ "$r" =~ ^[1-9][0-9]*$ ]]; then echo "vigane sisend"; exit 1; fi
+
+for ((i=1; i<=r; i++)); do
+  printf "%d. " "$i"
+  # vasak “täide” o-tähtedega
+  for ((k=1; k<=r-i; k++)); do printf "o "; done
+  # parempoolne kolmnurk tärnidega
+  for ((j=1; j<=i; j++)); do printf "* "; done
+  printf "\n"
+done
